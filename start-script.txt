@@ -1,0 +1,16 @@
+#!/bin/bash
+echo "Start script"
+
+if ! [ -d /path/spring-boot/ ]; then
+echo "create directory: spring-boot"
+mkdir /spring-boot
+fi
+
+echo "download GitHub repository"
+cd /spring-boot
+git clone https://github.com/Vlad-Kostyuk/Lab_7_Spring_Boot.git
+echo "download compleate"
+
+docker build . -t spring-boot
+
+docker run -p 8085:8085 --name spring-boot --link musql-standalone:mysql -d spring-boot
