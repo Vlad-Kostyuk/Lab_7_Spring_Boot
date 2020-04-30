@@ -13,4 +13,4 @@ echo "download compleate"
 
 docker build . -t spring-boot
 
-docker run -p 8085:8085 --name spring-boot --link musql-standalone:mysql -d spring-boot
+docker run -p 8085:8085 --name spring-boot --link mysql-standalone:mysql -d spring-boot
