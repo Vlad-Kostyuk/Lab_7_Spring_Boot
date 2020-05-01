@@ -1,5 +1,4 @@
-FROM openjdk:latest
-ADD target/spring-boot.jar  spring-boot.jar 
+FROM openjdk:8
+ADD target/docker-spring-boot.jar  docker-spring-boot.jar 
 EXPOSE 8086
-ENTRYPOINT ["java", "-jar", "spring-boot.jar"]
-
+ENTRYPOINT ["java", "-jar", "docker-spring-boot.jar"]
