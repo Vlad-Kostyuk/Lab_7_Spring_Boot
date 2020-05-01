@@ -21,5 +21,5 @@ echo "download compleate"
 echo "Create containers"
 docker run --name mysql-vlad -e MYSQL_ROOT_PASSWORD=vlad771200 -e MYSQL_DATABASE=iot_test_db -e MYSQL_USER=vlad -e MYSQL_PASSWORD=vlad771200 -d mysql:latest
 docker build . -t spring-boot
-docker run -p 8085:8085 --name spring-boot --link mysql-vlad:mysql -d spring-boot
+docker run -p 8086:8086 --name spring-boot --link mysql-vlad:mysql -d spring-boot
 
