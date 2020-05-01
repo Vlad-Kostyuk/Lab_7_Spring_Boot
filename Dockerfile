@@ -1,4 +1,4 @@
 FROM openjdk:latest
-ADD target/rest-service-0.1.0.jar rest-service-0.1.0.jar 
+ADD target/spring-boot.jar  spring-boot.jar 
 EXPOSE 8086
-ENTRYPOINT ["java", "-jar", "rest-service-0.1.0.jar"]
+ENTRYPOINT ["java", "-jar", "spring-boot.jar"]

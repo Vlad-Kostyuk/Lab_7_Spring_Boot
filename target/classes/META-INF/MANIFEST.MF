@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
-Implementation-Title: rest-service
+Implementation-Title: spring-boot
 Implementation-Version: 0.1.0
 Built-By: PC
 Implementation-Vendor-Id: org.springframework
 Build-Jdk: 1.8.0_201
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
- ot-starter-parent/rest-service
+ ot-starter-parent/spring-boot
 Created-By: Maven Integration for Eclipse
 
