@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.app.repos;
 
 import com.app.entity.BlackList;
@@ -10,7 +14,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-
+/**
+ *
+ * @author Root
+ */
 @Repository
 public interface BlackListRepository  extends JpaRepository<BlackList, BlackListKey>{
     @Query(name="select b from BlackList b where b.lockingUser = ?1")

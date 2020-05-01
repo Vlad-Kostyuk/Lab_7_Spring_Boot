@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.app.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,7 +20,10 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-
+/**
+ *
+ * @author Root
+ */
 @Entity
 @Table(name="user")
 @Getter

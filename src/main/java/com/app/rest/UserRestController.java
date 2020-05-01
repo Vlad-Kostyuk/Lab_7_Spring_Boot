@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.app.rest;
 
 import com.app.DTO.BlackListDTO;
@@ -29,6 +33,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+/**
+ *
+ * @author Root
+ */
 @RestController
 @RequestMapping(value = "api")
 public class UserRestController {
@@ -37,7 +45,7 @@ public class UserRestController {
     @Autowired PostService postService;
     @Autowired  BlackListService blackService;
     
-
+    // повертає всіх користувачів
     @RequestMapping(value = "/user", method = RequestMethod.GET,produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public ResponseEntity<List<UserDTO>> getAllUsers() {
         List<User> list = userService.getAll();
@@ -50,7 +58,7 @@ public class UserRestController {
         }
         return   new ResponseEntity<>(listDTO, HttpStatus.OK);
     }
-
+    // повертає користувача по id
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET,produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public ResponseEntity<UserDTO> getUserById(@PathVariable int id) throws NoSuchUserException {
          User user =  userService.getUserById(id);
@@ -59,7 +67,7 @@ public class UserRestController {
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
 
     }
-
+    // список користувачів яких id заблокував
     @RequestMapping(value = "/user/{id}/blockedUser", method = RequestMethod.GET,produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public ResponseEntity<List<BlackListDTO>> getBlockedUsers(@PathVariable int id) throws NoSuchUserException {
         User user = userService.getUserById(id);
@@ -77,6 +85,7 @@ public class UserRestController {
     
     
     
+    // заблокувати користувача pid користувачем id
     @RequestMapping(value = "/user/{id}/blockingUser/{pid}", method = RequestMethod.POST,produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public ResponseEntity blockUser(@PathVariable int id,@PathVariable int pid) throws NoSuchUserException {
         User userBlock = userService.getUserById(id);
@@ -87,7 +96,7 @@ public class UserRestController {
 //new ResponseEntity<>(userBlock.getBlockedUsers().stream().collect(Collectors.toList()), HttpStatus.OK);
 
     }
-
+    // розблокувати користувача pid користувачем id
     @RequestMapping(value = "/user/{id}/blockingUser/{pid}", method = RequestMethod.DELETE,produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public ResponseEntity delBlockedUser(@PathVariable int id,@PathVariable int pid) throws NoSuchUserException {
         User userBlock = userService.getUserById(id);
@@ -98,7 +107,7 @@ public class UserRestController {
 
     }
     
-
+    // список користуваячів які заблокували користувача id
     @RequestMapping(value = "/user/{id}/lockingUser", method = RequestMethod.GET,produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public ResponseEntity<List<BlackListDTO>> getLockingUsers(@PathVariable int id) throws NoSuchUserException {
         User user = userService.getUserById(id);
@@ -113,7 +122,7 @@ public class UserRestController {
         return new ResponseEntity<>(listDTO, HttpStatus.OK);
 
     }
-
+     // пости користувача id
     @RequestMapping(value = "/user/{id}/post", method = RequestMethod.GET,produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public ResponseEntity<List<PostDTO>> getPostUserById(@PathVariable int id) throws NoSuchUserException {
         List<Post> list = userService.getUserById(id).getPosts().stream().collect(Collectors.toList());
@@ -128,7 +137,7 @@ public class UserRestController {
         return new ResponseEntity<>(listDTO, HttpStatus.OK);
 
     }
-
+    // додати пост користувачу id
     @RequestMapping(value = "/user/{id}/post", method = RequestMethod.POST,produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public ResponseEntity<PostDTO> addPostUserById(@RequestBody Post post,
             @PathVariable int id) throws NoSuchUserException {
@@ -143,7 +152,7 @@ public class UserRestController {
     }
     
     
-
+    // отримати пост pid коритсувача id
      @RequestMapping(value = "/user/{id}/post/{pid}", method = RequestMethod.GET,produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public ResponseEntity<PostDTO> getPostByIdUserById(
         @PathVariable int id,@PathVariable int pid) throws NoSuchUserException,NoSuchPostException {
@@ -155,7 +164,7 @@ public class UserRestController {
         return new ResponseEntity<>(postDTO, HttpStatus.OK);
 
     }
-
+    // обнововити пост pid користувача id
     @RequestMapping(value = "/user/{id}/post/{pid}", method = RequestMethod.PUT,produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public ResponseEntity<PostDTO> editPostUserById(@RequestBody Post post,
         @PathVariable int id,@PathVariable int pid) throws NoSuchUserException,NoSuchPostException {
@@ -167,7 +176,7 @@ public class UserRestController {
 
     }
     
-
+    // видали пост pid користувача id
     @RequestMapping(value = "/user/{id}/post/{pid}", method = RequestMethod.DELETE,produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public ResponseEntity delPostUserById(
             @PathVariable int id,@PathVariable int pid) throws NoSuchUserException,NoSuchPostException{
@@ -177,7 +186,7 @@ public class UserRestController {
     }
     
     
-
+    // додати  користувача
     @RequestMapping(value = "/user",method = RequestMethod.POST)
             //,produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public ResponseEntity<UserDTO> createUser(@RequestBody User user) {
@@ -187,7 +196,7 @@ public class UserRestController {
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
      
     }
-
+    // обновити користувача
     @RequestMapping(value = "/user/{id}",method = RequestMethod.PUT,produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public ResponseEntity<UserDTO> updateUser(@RequestBody User user,@PathVariable int id) {
         User u = userService.getUserById(id);
@@ -198,7 +207,7 @@ public class UserRestController {
         
     }
 
-
+    // видалити користувачав
      @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE,produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     public ResponseEntity delUserById(@PathVariable int id) throws NoSuchUserException {
         userService.deleteUser(id);

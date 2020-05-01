@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.app.service;
 
 import com.app.entity.Post;
@@ -14,7 +18,11 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+/**
+ *
+ * @author Root
+ * сервіс по роботі з таблицею Post
+ */
 @Service
 public class PostService {
     @Autowired PostRepository postRepository;
@@ -25,7 +33,7 @@ public class PostService {
     @Transactional
     public Post createPost(User user,Post post){
         post.setUser(user);
-       // if (post.getDate()==null) post.setDate(new Date());
+        if (post.getDate()==null) post.setDate(new Date());
         post = postRepository.save(post);
         return post;
     }
