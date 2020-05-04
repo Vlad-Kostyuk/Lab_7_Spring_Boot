@@ -1,4 +1,5 @@
 FROM mysql:5.6
+ENV MYSQL_DATABASE iot_test_db
 COPY ./db/ /docker-entrypoint-initdb.d/
 
 FROM openjdk:8
