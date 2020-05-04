@@ -1,3 +1,4 @@
+CREATE DATABASE IF NOT EXISTS iot_test_db;
 USE `iot_test_db`;
 
 
