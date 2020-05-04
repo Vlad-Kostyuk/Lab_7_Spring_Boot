@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `iot_test_db`.`user` (
   `id_user` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nick_name` VARCHAR(45) NOT NULL,
   `foto` VARCHAR(255) NULL DEFAULT '0 or 1',
-  `last_activity` DATETIME GENERATED ALWAYS AS (null) VIRTUAL,
+  `last_activity` DATETIME GENERATED ALWAYS AS (null),
   PRIMARY KEY (`id_user`),
   INDEX `CHECK` (`foto` ASC) VISIBLE,
   INDEX `foto` (`foto` ASC) VISIBLE,
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `iot_test_db`.`post` (
   `id_post` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `id_user` INT UNSIGNED NOT NULL,
   `id_type_post` INT UNSIGNED NOT NULL,
-  `date` DATETIME GENERATED ALWAYS AS (null) VIRTUAL,
+  `date` DATETIME GENERATED ALWAYS AS (null),
   `description` TEXT(2000) NULL,
   PRIMARY KEY (`id_post`),
   INDEX `P.K_id_type_post_idx` (`id_type_post` ASC) VISIBLE,
@@ -106,7 +106,7 @@ INSERT INTO `post` (`id_post`,`id_user`, `id_type_post`,`description`) VALUES
 
 CREATE TABLE IF NOT EXISTS `iot_test_db`.`user_log` (
   `user_id` INT UNSIGNED NOT NULL,
-  `date_event` DATETIME GENERATED ALWAYS AS (null) VIRTUAL,
+  `date_event` DATETIME GENERATED ALWAYS AS (null),
   `log` VARCHAR(255) NOT NULL,
   INDEX `id_user` (`user_id` ASC) VISIBLE,
   INDEX `date` (`date_event` ASC) VISIBLE,
@@ -133,7 +133,7 @@ INSERT INTO `user_log` (`user_id`, `log`) VALUE
 CREATE TABLE IF NOT EXISTS `iot_test_db`.`blacklist` (
   `user_id` INT UNSIGNED NOT NULL,
   `locking_user_id` INT UNSIGNED NOT NULL,
-  `locking_time` DATETIME GENERATED ALWAYS AS (null) VIRTUAL,
+  `locking_time` DATETIME GENERATED ALWAYS AS (null),
   INDEX `P.K_id_user_blacklist_idx` (`user_id` ASC) INVISIBLE,
   INDEX `P.K_id_user_locking_idx` (`locking_user_id` ASC) VISIBLE,
   INDEX `locking_user` (`locking_user_id` ASC) INVISIBLE,
@@ -272,7 +272,7 @@ INSERT INTO `foto_and_video` (`id_foto_or_video`,`id_post`,`format`,`id_media_ty
 CREATE TABLE IF NOT EXISTS `iot_test_db`.`preference` (
   `id_user` INT UNSIGNED NOT NULL,
   `id_post` INT UNSIGNED NOT NULL,
-  `date` DATETIME GENERATED ALWAYS AS (null) VIRTUAL,
+  `date` DATETIME GENERATED ALWAYS AS (null),
   INDEX `P.K_id_post_preference_idx` (`id_post` ASC) VISIBLE,
   INDEX `P.K_id_user_preference_idx` (`id_user` ASC) INVISIBLE,
   INDEX `date_like` (`date` ASC) INVISIBLE,
