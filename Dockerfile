@@ -1,5 +1,5 @@
 FROM mysql:8
-VOLUME ["/docker-spring-boot/db", "/var/lib/mysql"]
+VOLUME ["/docker-spring-boot/db:/docker-entrypoint-initdb.d"]
 ENV MYSQL_DATABASE iot_test_db
 COPY ./db/ /docker-entrypoint-initdb.d/
 
