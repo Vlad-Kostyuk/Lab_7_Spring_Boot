@@ -7,7 +7,7 @@ ENV MYSQL_DATABASE=$MYSQL_DATABASE
 ENV MYSQL_USER=$MYSQL_USER
 ENV MYSQL_PASSWORD=$MYSQL_PASSWORD
 ENV MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
-VOLUME ["/docker-spring-boot/db:/docker-entrypoint-initdb.d"]
+VOLUME ["/docker-spring-boot/db"  "/docker-entrypoint-initdb.d"]
 COPY ./db/ /docker-entrypoint-initdb.d/
 EXPOSE 3036
 
