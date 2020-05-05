@@ -1,6 +1,5 @@
 #!/bin/bash
-user=Vlad-Kostyuk
-password=VladKostyuk24
+db=/docker-spring-boot/Lab_7_Spring_Boot/db/
 
 echo "Start script"
 echo "Remove old container"
@@ -19,18 +18,23 @@ fi
 echo "download GitHub repository"
 cd /docker-spring-boot
 git clone https://github.com/Vlad-Kostyuk/Lab_7_Spring_Boot.git
-$user
-$password
 echo "download compleate"
 
 sudo firewall-cmd --zone=public --add-port=8086/tcp --permanent
 
 echo "Create containers"
 cd /docker-spring-boot/Lab_7_Spring_Boot
-docker run --name mysql-vlad -e MYSQL_ROOT_PASSWORD=vlad771200 -e MYSQL_DATABASE=iot_test_db -e MYSQL_USER=vlad -e MYSQL_PASSWORD=vlad771200 -d mysql:5.6
+
+
+
+docker run --name mysql-vlad -e MYSQL_ROOT_PASSWORD=vlad771200 -e MYSQL_DATABASE=iot_test_db -e MYSQL_USER=vlad -e MYSQL_PASSWORD=vlad771200 -d mysql:8
 docker build . -t docker-spring-boot
 docker run -p 8086:8086 --name docker-spring-boot --link mysql-vlad:mysql -d docker-spring-boot
 
+
+docker exec -i mysql-vlad mysql -uvlad -pvlad771200 iot_test_db < /docker-spring-boot/Lab_7_Spring_Boot/db/mydb.sql
+
 docker logs -f docker-spring-boot | grep error
+docker logs -f mysql-vlad | grep error
 
 echo "Finish"
